@@ -37,7 +37,7 @@ The API demonstrates key concepts that mirror how **Model Context Protocol (MCP)
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/ElwoodPowerBI/sign-language-mcp-api.git
+git clone https://github.com/YOUR-USERNAME/sign-language-mcp-api.git
 cd sign-language-mcp-api
 
 # 2. Install dependencies
