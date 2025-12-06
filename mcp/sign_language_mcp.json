@@ -1,0 +1,44 @@
+{
+  "name": "sign-language-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for querying sign language descriptions across Auslan, JSL, and International Sign",
+  "tools": [
+    {
+      "name": "list_available_words",
+      "description": "Get a list of all words that have sign language descriptions available. Use this first to discover what words can be looked up.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "list_available_languages",
+      "description": "Get a list of all supported sign languages (Auslan, JSL, International Sign)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "name": "get_sign_description",
+      "description": "Get the sign language description for a specific word. Returns descriptions for all languages unless a specific language is specified.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "word": {
+            "type": "string",
+            "description": "The word to look up (e.g., 'hello', 'thank_you', 'please', 'sorry', 'help')"
+          },
+          "language": {
+            "type": "string",
+            "description": "Optional: specific language code ('auslan', 'jsl', or 'is')",
+            "enum": ["auslan", "jsl", "is"]
+          }
+        },
+        "required": ["word"]
+      }
+    }
+  ]
+}
