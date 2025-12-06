@@ -271,6 +271,12 @@ Activities:
 
 ## 🚢 Deployment Options
 
+> **Security Note:** This project runs Flask with `debug=True` for local development and learning. For production deployments, you should:
+> - Set `debug=False` in `app.py`
+> - Use a production WSGI server like Gunicorn or uWSGI
+> - Add proper environment variable handling
+> - Enable HTTPS/TLS encryption
+
 ### Option 1: Replit (Easiest for Students)
 1. Create a new Repl, import from GitHub
 2. Replit auto-detects Python and installs requirements
@@ -280,12 +286,13 @@ Activities:
 1. Connect your GitHub repo to Render
 2. Choose "Web Service"
 3. Build command: `pip install -r requirements.txt`
-4. Start command: `python app.py`
+4. Start command: `gunicorn app:app` (add `gunicorn` to requirements.txt)
 
 ### Option 3: Railway (Modern & Easy)
 1. Connect GitHub repo
 2. Railway auto-detects Python
-3. Deploys automatically on push
+3. Add production WSGI server to requirements.txt
+4. Deploys automatically on push
 
 ### Option 4: PythonAnywhere (Educational Friendly)
 1. Upload files to PythonAnywhere

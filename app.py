@@ -310,4 +310,6 @@ if __name__ == '__main__':
     print("\n" + "=" * 60)
     
     # Run the Flask app
+    # SECURITY NOTE: debug=True is only for local development/education!
+    # For production deployment, use debug=False and a production WSGI server like Gunicorn
     app.run(host='0.0.0.0', port=5000, debug=True)
