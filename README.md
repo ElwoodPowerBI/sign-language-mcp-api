@@ -36,7 +36,7 @@ The API demonstrates key concepts that mirror how **Model Context Protocol (MCP)
 ### Installation & Running
 
 ```bash
-# 1. Clone the repository
+# 1. Clone the repository (replace YOUR-USERNAME with your GitHub username)
 git clone https://github.com/YOUR-USERNAME/sign-language-mcp-api.git
 cd sign-language-mcp-api
 
@@ -45,20 +45,28 @@ pip install -r requirements.txt
 
 # 3. Run the API
 python app.py
+
+# Optional: Configure with environment variables
+# FLASK_HOST=0.0.0.0 FLASK_PORT=8080 FLASK_DEBUG=False python app.py
 ```
 
-The API will start on `http://localhost:5000`
+The API will start on `http://127.0.0.1:5000` (localhost) by default.
+
+**Environment Variables (optional):**
+- `FLASK_HOST` - Host to bind to (default: `127.0.0.1`, use `0.0.0.0` for all interfaces)
+- `FLASK_PORT` - Port number (default: `5000`)
+- `FLASK_DEBUG` - Debug mode (default: `True`, set to `False` for production)
 
 ### First API Calls
 
 Try these URLs in your browser:
 ```
-http://localhost:5000/                          # Welcome page
-http://localhost:5000/api/v1/words              # See all available words
-http://localhost:5000/api/v1/languages          # See supported languages
-http://localhost:5000/api/v1/capabilities       # See ALL API capabilities
-http://localhost:5000/api/v1/signs/hello        # Get "hello" in all languages
-http://localhost:5000/api/v1/signs/hello/auslan # Get "hello" in Auslan only
+http://127.0.0.1:5000/                          # Welcome page
+http://127.0.0.1:5000/api/v1/words              # See all available words
+http://127.0.0.1:5000/api/v1/languages          # See supported languages
+http://127.0.0.1:5000/api/v1/capabilities       # See ALL API capabilities
+http://127.0.0.1:5000/api/v1/signs/hello        # Get "hello" in all languages
+http://127.0.0.1:5000/api/v1/signs/hello/auslan # Get "hello" in Auslan only
 ```
 
 ---

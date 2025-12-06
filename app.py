@@ -10,6 +10,7 @@ This Flask API demonstrates key concepts:
 Perfect for teaching students about REST APIs and how they relate to AI tool integration!
 """
 
+import os
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import database
@@ -294,6 +295,12 @@ def get_sign_specific_language(word, language):
 # ============================================================================
 
 if __name__ == '__main__':
+    # Configuration - use environment variables for flexibility
+    # For production: set FLASK_ENV=production, FLASK_DEBUG=False
+    debug_mode = os.environ.get('FLASK_DEBUG', 'True').lower() == 'true'
+    host = os.environ.get('FLASK_HOST', '127.0.0.1')  # Default to localhost for security
+    port = int(os.environ.get('FLASK_PORT', '5000'))
+    
     print("=" * 60)
     print(f"🚀 Starting {API_NAME} v{API_VERSION}")
     print("=" * 60)
@@ -301,15 +308,23 @@ if __name__ == '__main__':
     print("   - Discovery Endpoints: How to find available resources")
     print("   - Self-Describing API: /capabilities shows everything")
     print("   - MCP Connection: Similar patterns to AI tool integration")
-    print("\n🔗 USEFUL URLs:")
-    print("   Root:         http://localhost:5000/")
-    print("   Words:        http://localhost:5000/api/v1/words")
-    print("   Languages:    http://localhost:5000/api/v1/languages")
-    print("   Capabilities: http://localhost:5000/api/v1/capabilities")
-    print("   Example:      http://localhost:5000/api/v1/signs/hello")
+    print(f"\n🔗 USEFUL URLs (running on {host}:{port}):")
+    print(f"   Root:         http://{host}:{port}/")
+    print(f"   Words:        http://{host}:{port}/api/v1/words")
+    print(f"   Languages:    http://{host}:{port}/api/v1/languages")
+    print(f"   Capabilities: http://{host}:{port}/api/v1/capabilities")
+    print(f"   Example:      http://{host}:{port}/api/v1/signs/hello")
+    
+    if debug_mode:
+        print("\n⚠️  SECURITY WARNING: Running in DEBUG mode!")
+        print("   Debug mode is only for local development/education.")
+        print("   For production: Set FLASK_DEBUG=False and use a production WSGI server.")
+    
+    if host == '0.0.0.0':
+        print("\n⚠️  NETWORK WARNING: Listening on all interfaces (0.0.0.0)")
+        print("   For local development, consider using FLASK_HOST=127.0.0.1")
+    
     print("\n" + "=" * 60)
     
-    # Run the Flask app
-    # SECURITY NOTE: debug=True is only for local development/education!
-    # For production deployment, use debug=False and a production WSGI server like Gunicorn
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # Run the Flask app with configuration from environment
+    app.run(host=host, port=port, debug=debug_mode)
